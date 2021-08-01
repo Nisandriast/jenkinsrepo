@@ -31,7 +31,7 @@ pipeline {
 					withCredentials([usernamePassword(credentialsId: 'docker-nis22', passwordVariable: 'PWD', usernameVariable: 'USER')]) {
 					sh "echo $USER"
 					
-					sh 'docker login -u $USER -p "$PWD"'
+					sh "docker login -u $USER -p $PWD"
 					
 					sh 'docker push docknis22/nis:spring-boot-rest-services-0.0.1-SNAPSHOT.jar'
 					}

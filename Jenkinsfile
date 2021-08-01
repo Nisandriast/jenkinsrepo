@@ -29,6 +29,7 @@ pipeline {
                 script {
                     sh 'docker build -t docknis22/nis:spring-boot-rest-services-0.0.1-SNAPSHOT.jar .'
 					withCredentials([usernamePassword(credentialsId: 'docker-nis22', passwordVariable: '$PWD', usernameVariable: '$USER')]) {
+					sh "echo $USER"
 					
 					sh "echo $PWD | docker login -u $USER --password-stdin"
 					

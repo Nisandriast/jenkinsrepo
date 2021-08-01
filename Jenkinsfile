@@ -26,7 +26,13 @@ pipeline {
         stage("build and push image") {
             steps {
                 script {
-                    echo "build docker and push"
+                    sh 'docker build -t docknis22/nis:spring-boot-rest-services-0.0.1-SNAPSHOT.jar'
+					withCredentials([usernamePassword(credentialsId: 'docker-nis22', passwordVariable: '$PWD', usernameVariable: '$USER')]) {
+					
+					sh "echo $PWD | docker login -u $USER --password-stdin"
+					
+					sh 'docker push docknis22/nis:spring-boot-rest-services-0.0.1-SNAPSHOT.jar'
+					}
                 }
             }
         }

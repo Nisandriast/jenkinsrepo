@@ -19,6 +19,7 @@ pipeline {
             steps {
                 script {
                     echo "executing building block"
+					sh 'mvn package'
                 }
             }
         }
